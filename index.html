@@ -2,199 +2,250 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Cybersecurity Escape Room</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0d1117;
-      color: #f0f6fc;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <title>Cybersecurity Escape Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0d1117;
+            color: #f0f6fc;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
 
-    .container {
-      max-width: 600px;
-      margin: auto;
-    }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
 
-    .puzzle {
-      display: none;
-      margin-top: 20px;
-      padding: 20px;
-      border: 2px solid #30363d;
-      border-radius: 12px;
-      background: #161b22;
-    }
+        .puzzle {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #30363d;
+            border-radius: 12px;
+            background: #161b22;
+        }
 
-    .puzzle.active {
-      display: block;
-    }
+        .puzzle.active {
+            display: block;
+        }
 
-    input,
-    button,
-    select {
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: none;
-      font-size: 1em;
-    }
+        input,
+        button,
+        select {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            font-size: 1em;
+        }
 
-    button {
-      background: #238636;
-      color: white;
-      cursor: pointer;
-    }
+        button {
+            background: #238636;
+            color: white;
+            cursor: pointer;
+        }
 
-    button:hover {
-      background: #2ea043;
-    }
+        button:hover {
+            background: #2ea043;
+        }
 
-    .email {
-      text-align: left;
-      border: 1px solid #555;
-      padding: 10px;
-      background: #0d1117;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
+        .email {
+            text-align: left;
+            border: 1px solid #555;
+            padding: 10px;
+            background: #0d1117;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
 
-    .clickable {
-      color: #ff7b72;
-      cursor: pointer;
-      text-decoration: underline;
-    }
+        .clickable {
+            color: #ff7b72;
+            cursor: pointer;
+            text-decoration: underline;
+        }
 
-    .hidden {
-      display: none;
-    }
+        .hidden {
+            display: none;
+        }
 
-    .success {
-      font-size: 1.3em;
-      color: #3fb950;
-      font-weight: bold;
-    }
-  </style>
+        .success {
+            font-size: 1.3em;
+            color: #3fb950;
+            font-weight: bold;
+        }
+
+        .email {
+            text-align: left;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.95em;
+            line-height: 1.4;
+            background: #ffffff;
+            /* white background */
+            color: #000000;
+            /* black text */
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .email-header {
+            border-bottom: 1px solid #ddd;
+            padding: 8px 12px;
+            background: #f6f8fa;
+        }
+
+        .email-body {
+            padding: 12px;
+        }
+
+        .email p {
+            margin: 6px 0;
+        }
+
+        .clickable {
+            color: #0000EE;
+            /* red clickable flags */
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Cybersecurity Escape Room</h1>
-    <p>You’ve been locked in a compromised system. Solve all challenges to escape!</p>
+    <div class="container">
+        <h1>Cybersecurity Escape Room</h1>
+        <p>You’ve been locked in a compromised system. Solve all challenges to escape!</p>
 
-    <!-- Puzzle 1 -->
-    <div id="puzzle1" class="puzzle active">
-      <h2>Puzzle 1: Caesar Cipher</h2>
-      <p>Decrypt this message (shift 3): <b>"Khoor, Fodvv!"</b></p>
-      <input type="text" id="cipherInput" placeholder="Your answer here">
-      <br>
-      <button onclick="checkCipher()">Submit</button>
-      <p id="cipherFeedback"></p>
+        <!-- Puzzle 1 -->
+        <div id="puzzle1" class="puzzle active">
+            <h2>Puzzle 1: Caesar Cipher</h2>
+            <p>Decrypt this message: <b>"Jhu fvb lzjhwl aol aoylhaz?"</b></p>
+            <input type="text" id="cipherInput" placeholder="Your answer here">
+            <br>
+            <button onclick="checkCipher()">Submit</button>
+            <p id="cipherFeedback"></p>
+        </div>
+
+        <!-- Puzzle 2 -->
+        <div id="puzzle2" class="puzzle">
+            <h2>Puzzle 2: Phishing Email</h2>
+            <p>Tap the 3 red flags in this suspicious email.</p>
+            <div class="email">
+                <div class="email-header">
+                    <p><b>From:</b> <span class="clickable" onclick="flagClick(this)">IT Support
+                            &lt;it-support@csula-security.com&gt;</span></p>
+                    <p><b>To:</b> you@calstatela.edu</p>
+                    <p><b>Subject:</b> <span class="clickable" onclick="flagClick(this)">URGENT: Your account will be
+                            locked in 24 hours</span></p>
+                </div>
+                <div class="email-body">
+                    <p>Hello,</p>
+                    <p>
+                        Our records indicate unusual activity on your account. Please
+                        <span class="clickable" onclick="flagClick(this)">verify your password immediately by clicking
+                            this link</span>.
+                    </p>
+                    <p>If you do not respond, your account will be suspended within 24 hours.</p>
+                    <p>Thank you,</p>
+                    <p>IT Support Team</p>
+                </div>
+            </div>
+            <p id="flagFeedback"></p>
+        </div>
+
+
+
+        <!-- Puzzle 3 -->
+        <div id="puzzle3" class="puzzle">
+            <h2>Puzzle 3: Password Strength</h2>
+            <p>Which password is the strongest?</p>
+            <button onclick="checkPassword('weak')">Password123</button><br>
+            <button onclick="checkPassword('medium')">Tr0ub4dor3</button><br>
+            <button onclick="checkPassword('strong')">C!ph3r$2025*S</button>
+            <p id="passwordFeedback"></p>
+        </div>
+
+        <!-- Puzzle 4 -->
+        <div id="puzzle4" class="puzzle">
+            <h2>Puzzle 4: Incident Response</h2>
+            <p>Your server has been hit with ransomware. What should you do first?</p>
+            <button onclick="checkIncident('wrong')">Pay the ransom</button><br>
+            <button onclick="checkIncident('correct')">Disconnect infected devices and servers from the
+                network</button><br>
+            <button onclick="checkIncident('wrong')">Shut down infected devices</button>
+            <p id="incidentFeedback"></p>
+        </div>
+
+        <!-- Escape Screen -->
+        <div id="escape" class="puzzle">
+            <img src="img/lock.jfif" alt="Unlocked lock with binary in background" title="Escaped Lock">
+            <h2 class="success">You Escaped!</h2>
+            <p>Congrats! You’ve restored the system and escaped the cyber attack.</p>
+            <p><b>Takeaway:</b> Cybersecurity fundamentals rely on awareness, strong passwords, phishing detection, and quick
+                incident response.</p>
+        </div>
     </div>
 
-    <!-- Puzzle 2 -->
-    <div id="puzzle2" class="puzzle">
-      <h2>Puzzle 2: Phishing Email</h2>
-      <p>Tap the 3 red flags in this suspicious email.</p>
-      <div class="email">
-        <p><span class="clickable" onclick="flagClick(this)">From: it-support@fakecompany-security.com</span></p>
-        <p>Subject: <span class="clickable" onclick="flagClick(this)">URGENT: Your account will be locked in 24
-            hours</span></p>
-        <p>Hello user,</p>
-        <p>Please <span class="clickable" onclick="flagClick(this)">click here to verify your password</span>
-          immediately.</p>
-        <p>Thank you,</p>
-        <p>IT Support</p>
-      </div>
-      <p id="flagFeedback"></p>
-    </div>
+    <script>
+        // Puzzle 1
+        function checkCipher() {
+            const answer = document.getElementById("cipherInput").value.trim().toLowerCase();
+            if (answer === "can you escape the threats" || answer === "can you escape the threats?") {
+                document.getElementById("cipherFeedback").innerText = "Correct!";
+                showNext("puzzle1", "puzzle2");
+            } else {
+                document.getElementById("cipherFeedback").innerText = "Try again!";
+            }
+        }
 
-    <!-- Puzzle 3 -->
-    <div id="puzzle3" class="puzzle">
-      <h2>Puzzle 3: Password Strength</h2>
-      <p>Which password is the strongest?</p>
-      <button onclick="checkPassword('weak')">Password123</button><br>
-      <button onclick="checkPassword('medium')">Tr0ub4dor&3</button><br>
-      <button onclick="checkPassword('strong')">C!ph3r$2025*Secure</button>
-      <p id="passwordFeedback"></p>
-    </div>
+        // Puzzle 2
+        let flagsFound = 0;
+        function flagClick(el) {
+            if (!el.classList.contains("found")) {
+                el.classList.add("found");
+                el.style.color = "#3fb950";
+                flagsFound++;
+            }
+            if (flagsFound === 3) {
+                document.getElementById("flagFeedback").innerText = "All red flags found!";
+                showNext("puzzle2", "puzzle3");
+            }
+        }
 
-    <!-- Puzzle 4 -->
-    <div id="puzzle4" class="puzzle">
-      <h2>Puzzle 4: Incident Response</h2>
-      <p>Your server has been hit with ransomware. What should you do first?</p>
-      <button onclick="checkIncident('wrong')">Pay the ransom</button><br>
-      <button onclick="checkIncident('correct')">Disconnect the system from the network</button><br>
-      <button onclick="checkIncident('wrong')">Ignore and hope it goes away</button>
-      <p id="incidentFeedback"></p>
-    </div>
+        // Puzzle 3
+        function checkPassword(strength) {
+            if (strength === "strong") {
+                document.getElementById("passwordFeedback").innerText = "Correct!";
+                showNext("puzzle3", "puzzle4");
+            } else {
+                document.getElementById("passwordFeedback").innerText = "That’s not the strongest password.";
+            }
+        }
 
-    <!-- Escape Screen -->
-    <div id="escape" class="puzzle">
-      <h2 class="success">You Escaped!</h2>
-      <p>Congrats! You’ve restored the system and escaped the cyber attack.</p>
-      <p><b>Takeaway:</b> Cybersecurity relies on awareness, strong passwords, phishing detection, and quick incident
-        response.</p>
-    </div>
-  </div>
+        // Puzzle 4
+        function checkIncident(choice) {
+            if (choice === "correct") {
+                document.getElementById("incidentFeedback").innerText = "Correct!";
+                showNext("puzzle4", "escape");
+            } else {
+                document.getElementById("incidentFeedback").innerText = "Not the best choice. Try again.";
+            }
+        }
 
-  <script>
-    // Puzzle 1
-    function checkCipher() {
-      const answer = document.getElementById("cipherInput").value.trim().toLowerCase();
-      if (answer === "hello, class!" || answer === "hello class!") {
-        document.getElementById("cipherFeedback").innerText = "Correct!";
-        showNext("puzzle1", "puzzle2");
-      } else {
-        document.getElementById("cipherFeedback").innerText = "Try again!";
-      }
-    }
-
-    // Puzzle 2
-    let flagsFound = 0;
-    function flagClick(el) {
-      if (!el.classList.contains("found")) {
-        el.classList.add("found");
-        el.style.color = "#3fb950";
-        flagsFound++;
-      }
-      if (flagsFound === 3) {
-        document.getElementById("flagFeedback").innerText = "All red flags found!";
-        showNext("puzzle2", "puzzle3");
-      }
-    }
-
-    // Puzzle 3
-    function checkPassword(strength) {
-      if (strength === "strong") {
-        document.getElementById("passwordFeedback").innerText = "Correct!";
-        showNext("puzzle3", "puzzle4");
-      } else {
-        document.getElementById("passwordFeedback").innerText = "That’s not the strongest password.";
-      }
-    }
-
-    // Puzzle 4
-    function checkIncident(choice) {
-      if (choice === "correct") {
-        document.getElementById("incidentFeedback").innerText = "Correct!";
-        showNext("puzzle4", "escape");
-      } else {
-        document.getElementById("incidentFeedback").innerText = "Not the best choice. Try again.";
-      }
-    }
-
-    // Utility: Show next puzzle
-    function showNext(currentId, nextId) {
-      setTimeout(() => {
-        document.getElementById(currentId).classList.remove("active");
-        document.getElementById(nextId).classList.add("active");
-      }, 800);
-    }
-  </script>
+        // Utility: Show next puzzle
+        function showNext(currentId, nextId) {
+            setTimeout(() => {
+                document.getElementById(currentId).classList.remove("active");
+                document.getElementById(nextId).classList.add("active");
+            }, 800);
+        }
+    </script>
 </body>
 
 </html>
